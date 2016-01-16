@@ -3,7 +3,7 @@
 ##Introduction
 Based on the project [***EasyPR***](https://github.com/liuruoze/EasyPR), ***OpenCV 2.4***, and ***Cmake***.
 Currently, it seems that ***both [***EasyPR***](https://github.com/liuruoze/EasyPR) and my project can work only on Chinese car plates***.
-Sorry about this because the various features of car plates all over the world.
+Sorry about this because of the various features of car plates all over the world.
 
 My source code locates in the /api directory, which contains my APIs.
 
@@ -67,7 +67,7 @@ to get userful information easily.
 ```
 
 ```cpp
-void PlateRecognitionAPI:: getTheBestMatchedPlate(Mat &srcImg);
+void PlateRecognitionAPI::getTheBestMatchedPlate(Mat &srcImg);
 /*
 Process the input image and show the recognition result by 
 adding a rectangle to show the plate with words above.
