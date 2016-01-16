@@ -1,0 +1,2 @@
+/Users/lj/Code/TCL-Project/EasyPR/CMakeFiles/easypr.dir
+/Users/lj/Code/TCL-Project/EasyPR/CMakeFiles/easypr_test.dir

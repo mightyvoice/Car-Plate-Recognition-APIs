@@ -1,0 +1,4 @@
+1. Some recognized plate's width and height are exchanged
+2. Can only extract a part of a whole plate, due to the algorithm's drawback
+3. Cannot recognize any character when the recognized plate is twisted or rotated
+4. Cannot recognize enough charcters beacause the image is not clear or other reason
