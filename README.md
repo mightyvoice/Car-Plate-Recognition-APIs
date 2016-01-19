@@ -11,6 +11,17 @@ The original [***EasyPR***](https://github.com/liuruoze/EasyPR) only provides th
 Therefore, I also changed some code so that people can not only get the words, 
 but also the position and Mat of a plate.
 
+##Tutorial
+First, you should install ***Cmake***.  
+Then in current folder input the following commands: 
+***
+cmake .  
+make
+***
+
+Then there will be a static library ***libeasypr.a***. Then you can include the header file 
+"./api/PlateRecognitionAPI.h" and the generated static library in your project to use the APIs.
+
 ##Source Code Structure
 ###/include
 All the include files from the [***EasyPR***](https://github.com/liuruoze/EasyPR) project. However, you do not need include any file from this directory.
