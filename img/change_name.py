@@ -1,5 +1,4 @@
-import nude
-from nude import Nude
+
 import os
 
 allFileNames = os.listdir(".");

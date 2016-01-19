@@ -227,25 +227,37 @@ void PlateRecognitionAPI::getAllRecognizedPlates(Mat srcImg){
 
 void PlateRecognitionAPI::plateRecognizeFromVideo(string videoPath){
 	VideoCapture vc;
+	VideoWriter vw;  
 	vc.open(videoPath.c_str());
 	string window_name = "processed_video";
 	int count = 0;
-	const int COUNT_TO_SAMPLE = 5;
+	const int COUNT_TO_SAMPLE = 1;
 	if(vc.isOpened()){
 
 		////////////////////write video initialization
-		VideoWriter vw;  
-        vw.open( "./output.mp4", // 输出视频文件名  
-                (int)vc.get( CV_CAP_PROP_FOURCC ), // 也可设为CV_FOURCC_PROMPT，在运行时选取  
+        vw.open( "plate_rec_output.avi", // 输出视频文件名  
+        		 CV_FOURCC('m', 'p', '4', 'v'),
+        		// (int)vc.get( CV_FOURCC_PROMPT ),
+                // (int)vc.get( CV_CAP_PROP_FOURCC ), // 也可设为CV_FOURCC_PROMPT，在运行时选取  
                 (double)vc.get( CV_CAP_PROP_FPS ), // 视频帧率  
                 cv::Size( (int)vc.get( CV_CAP_PROP_FRAME_WIDTH ), (int)vc.get( CV_CAP_PROP_FRAME_HEIGHT ) ), // 视频大小  
                 true ); // 是否输出彩色视频 
 		////////////////////write video initialization
+		if(!vw.isOpened()){
+			cout<<"Cannot write to the file"<<endl;
+			return;
+		}
 
+		int totalFrame = vc.get(CV_CAP_PROP_FRAME_COUNT);
+		int frameCount = 0;
 		Mat frame;
 		while(true){
 			vc >> frame;
 			// vc.read(frame);
+			frameCount++;
+			if(frameCount > totalFrame){
+				break;
+			}
 			count++;
 			long bt;
 			if(count == 1) bt = clock();
@@ -260,16 +272,19 @@ void PlateRecognitionAPI::plateRecognizeFromVideo(string videoPath){
 				long endTime = clock();
 				cout<<"Recognize Time: "<<(endTime-beginTime)*1.0/CLOCKS_PER_SEC<<endl;
 				cout<<endl<<endl;
-				vw<<frame;
+				if(vw.isOpened()){
+					vw.write(frame);
+				}
 				imshow(window_name, frame);
 				int c = waitKey(10);
-            	if( (char)c == 'c' ){
+            	if( c == 27 ){
+            		//ESC pressed
             		break;
             	}
             }
 		}
 	}
-	vc.release();
+	// vc.release();
+	// vw.release();
 }
-
 
